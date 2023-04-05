@@ -59,7 +59,7 @@ switch(playerChoice) {
 }
 
 // return a win status
-return Winstatus;
+return winStatus;
 }
 
 // Create a function that prints proper messages
