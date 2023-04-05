@@ -10,3 +10,10 @@ function getComputerChoice(){
  // Return the variable 
  return randomChoice;
 }
+
+// Create playRound function with two parameters
+// convert player choice to lowercase and store it in a variable
+// Create a variable that saves game result
+// create a switch statement to evaluate the choice against computer 
+// Check if the player has won, lost or is even
+// return a proper message
