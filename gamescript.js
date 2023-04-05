@@ -1,5 +1,5 @@
 // A list of possible game options
-const gameOptions = ['Rock', 'Paper', 'Scissors'];
+const gameOptions = ['rock', 'paper', 'scissors'];
 
 // Create getComputerChoice function
 function getComputerChoice(){
