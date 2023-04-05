@@ -58,12 +58,15 @@ switch(playerChoice) {
         }
 }
 
-// return a proper message
+// return a win status
 return Winstatus;
 }
 
 // Create a function that prints proper messages
 function printMessage(status, playerChoice, computerChoice) {
+    
+    let message = '';
+
     if(status === 1) {
         message = `You Won! ${playerChoice} beats ${computerChoice}`;
       }
@@ -73,5 +76,6 @@ function printMessage(status, playerChoice, computerChoice) {
       else{
           message = `Even ! both choices are ${playerChoice}`;
       }
-
+    
+      console.log(message);
 }
