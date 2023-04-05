@@ -12,8 +12,66 @@ function getComputerChoice(){
 }
 
 // Create playRound function with two parameters
+function playRound(playerSelection, computerSelection) {
+
 // convert player choice to lowercase and store it in a variable
+let playerChoice = playerSelection.toLowerCase();
+
 // Create a variable that saves game result
+let winStatus = 0;
+
 // create a switch statement to evaluate the choice against computer 
-// Check if the player has won, lost or is even
+switch(playerChoice) {
+    case 'rock':
+        switch(computerSelection){
+            case 'paper': 
+            winStatus = -1;
+            break;
+
+            case 'scissors':
+            winStatus = 1;
+            break;
+        }
+        break;
+
+    case 'paper':
+        switch(computerSelection){
+            case 'rock':
+            winStatus = 1;
+            break;
+
+            case 'scissors':
+            winStatus = -1;
+            break;
+        }
+        break;
+
+    case 'scissors':
+        switch(computerSelection) {
+            case 'rock':
+            winStatus: -1;
+            break;
+
+            case 'paper':
+            winStatus: 1;
+            break;
+        }
+}
+
 // return a proper message
+return Winstatus;
+}
+
+// Create a function that prints proper messages
+function printMessage(status, playerChoice, computerChoice) {
+    if(status === 1) {
+        message = `You Won! ${playerChoice} beats ${computerChoice}`;
+      }
+      else if(status === -1) {
+        message = `You lost! ${computerChoice} beats ${playerChoice}`;
+      }
+      else{
+          message = `Even ! both choices are ${playerChoice}`;
+      }
+
+}
