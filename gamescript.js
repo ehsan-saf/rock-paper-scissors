@@ -49,14 +49,17 @@ switch(playerChoice) {
     case 'scissors':
         switch(computerSelection) {
             case 'rock':
-            winStatus: -1;
+            winStatus = -1;
             break;
 
             case 'paper':
-            winStatus: 1;
+            winStatus = 1;
             break;
         }
 }
+
+// print a message for one round
+printMessage(winStatus, playerChoice, computerSelection);
 
 // return a win status
 return winStatus;
