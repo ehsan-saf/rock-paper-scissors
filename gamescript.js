@@ -82,3 +82,19 @@ function printMessage(status, playerChoice, computerChoice) {
     
       console.log(message);
 }
+
+
+//Create a function called game that plays the game 5 times 
+// variable for storing computer score
+// variable for storing player score
+// variable for storing computer choice
+// variable for storing player choice
+// for loops that runs 5 times
+    // get computer choice
+   // get user input 
+   // play the round
+   // decide which side to give score 
+     // if the return value is 1, add 1 score to the player
+     // else if it's -1, add 1 score to the computer
+
+// decide which side is the winner or if it's a tie and show it in the console
