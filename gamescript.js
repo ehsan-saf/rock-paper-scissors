@@ -122,11 +122,14 @@ for (let i = 0; i < 5; i++) {
    }
    else if(roundResult === -1) {
     computerScore++;
-   }
-     
-     
+   }  
 }
-    // decide which side is the winner 
+    finalWinner(playerScore, computerScore);
+}
+
+// create a function for finalWinner with two parameters
+function finalWinner(playerScore, computerScore) {
+ // decide which side is the winner 
     // or if it's a tie and show it in the console
     if(playerScore > computerScore) {
         console.log(`You won the game by a 
@@ -141,6 +144,4 @@ for (let i = 0; i < 5; i++) {
          your score is ${playerScore} and 
          the computer score is ${computerScore}`);
     }
-
-
 }
