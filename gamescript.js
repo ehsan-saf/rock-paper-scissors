@@ -85,16 +85,62 @@ function printMessage(status, playerChoice, computerChoice) {
 
 
 //Create a function called game that plays the game 5 times 
-// variable for storing computer score
-// variable for storing player score
-// variable for storing computer choice
-// variable for storing player choice
-// for loops that runs 5 times
-    // get computer choice
-   // get user input 
-   // play the round
-   // decide which side to give score 
-     // if the return value is 1, add 1 score to the player
-     // else if it's -1, add 1 score to the computer
+function game(){
 
-// decide which side is the winner or if it's a tie and show it in the console
+// variable for storing computer score
+let computerScore = 0;
+
+// variable for storing player score
+let playerScore = 0;
+
+// variable for storing computer choice
+let comChoice = '';
+
+// variable for storing player choice
+let playerChoice = '';
+
+// variable for storing each round result
+let roundResult = 0;
+
+// for loops that runs 5 times
+for (let i = 0; i < 5; i++) {
+
+    // get computer choice
+    comChoice = getComputerChoice();
+
+   // get user input
+   playerChoice = prompt('Please type your choice ( rock , paper , scissors )'); 
+
+   // play the round
+   roundResult = playRound(playerChoice, comChoice);
+
+   // decide which side to give score 
+   // if the return value is 1, add 1 score to the player
+   // else if it's -1, add 1 score to the computer
+   if(roundResult === 1) {
+    playerScore++;
+   }
+   else if(roundResult === -1) {
+    computerScore++;
+   }
+     
+     
+}
+    // decide which side is the winner 
+    // or if it's a tie and show it in the console
+    if(playerScore > computerScore) {
+        console.log(`You won the game by a 
+        score of ${playerScore} to ${computerScore}`);
+    }
+    else if(computerScore > playerScore) {
+        console.log(`You lost the game by a
+         score of ${playerScore} to ${computerScore}`);
+    }
+    else {
+        console.log(`It's a tie,
+         your score is ${playerScore} and 
+         the computer score is ${computerScore}`);
+    }
+
+
+}
