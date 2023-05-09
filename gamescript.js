@@ -11,17 +11,31 @@ function getComputerChoice(){
  return randomChoice;
 }
 
-// Create playRound function with two parameters
-function playRound(playerSelection, computerSelection) {
+let computerScore = 0;
+let playerScore = 0;
+let roundNumber = 0;
+let computerBtn;
 
-// convert player choice to lowercase and store it in a variable
-let playerChoice = playerSelection.toLowerCase();
+// Create playRound function with two parameters
+function playRound(playerSelection) {
+
+   if(computerBtn !== undefined)
+      computerBtn.style.backgroundColor = "#f2f7f3";
+
+// A variable to hold the computer's choice
+let computerSelection = getComputerChoice();
+computerButtons.forEach(btn => {
+   if(btn.getAttribute("value") === computerSelection){
+        btn.style.backgroundColor = "#2596be";
+        computerBtn = btn;
+   }
+});
 
 // Create a variable that saves game result
 let winStatus = 0;
 
 // create a switch statement to evaluate the choice against computer 
-switch(playerChoice) {
+switch(playerSelection) {
     case 'rock':
         switch(computerSelection){
             case 'paper': 
@@ -56,92 +70,115 @@ switch(playerChoice) {
             winStatus = 1;
             break;
         }
+
 }
 
 // print a message for one round
-printMessage(winStatus, playerChoice, computerSelection);
+printMessage(winStatus, playerSelection, computerSelection);
 
-// return a win status
-return winStatus;
+if(roundNumber !== 5){
+    if(winStatus === 1) {
+        playerScore++;
+    }
+    else if(winStatus === -1){
+        computerScore++;
+    }
+  roundNumber++;
+}
+else{
+    finalWinner(playerScore, computerScore);
 }
 
+}
+
+
 // Create a function that prints proper messages
-function printMessage(status, playerChoice, computerChoice) {
+function printMessage(status, playerSelection, computerChoice) {
     
     let message = '';
 
     if(status === 1) {
-        message = `You Won! ${playerChoice} beats ${computerChoice}`;
+        message = `You Won! ${playerSelection} beats ${computerChoice}`;
       }
       else if(status === -1) {
-        message = `You lost! ${computerChoice} beats ${playerChoice}`;
+        message = `You lost! ${computerChoice} beats ${playerSelection}`;
       }
       else{
-          message = `Even ! both choices are ${playerChoice}`;
+          message = `Even ! both choices are ${playerSelection}`;
       }
     
-      console.log(message);
+      const result = document.querySelector(".result");
+      result.textContent = message;
 }
 
-
-//Create a function called game that plays the game 5 times 
-function game(){
-
-// variable for storing computer score
-let computerScore = 0;
-
-// variable for storing player score
-let playerScore = 0;
-
-// variable for storing computer choice
-let comChoice = '';
-
-// variable for storing player choice
-let playerChoice = '';
-
-// variable for storing each round result
-let roundResult = 0;
-
-// for loops that runs 5 times
-for (let i = 0; i < 5; i++) {
-
-    // get computer choice
-    comChoice = getComputerChoice();
-
-   // get user input
-   playerChoice = prompt('Please type your choice ( rock , paper , scissors )'); 
-
-   // play the round
-   roundResult = playRound(playerChoice, comChoice);
-
-   // decide which side to give score 
-   // if the return value is 1, add 1 score to the player
-   // else if it's -1, add 1 score to the computer
-   if(roundResult === 1) {
-    playerScore++;
-   }
-   else if(roundResult === -1) {
-    computerScore++;
-   }  
-}
-    finalWinner(playerScore, computerScore);
-}
-
-// create a function for finalWinner with two parameters
+// create a function for finalWinner
 function finalWinner(playerScore, computerScore) {
- // decide which side is the winner 
-    // or if it's a tie and show it in the console
+ // decide which side is the final winner 
+    // or if it's a tie and show it in div
+    let message = "";
+
     if(playerScore > computerScore) {
-        console.log(`You won the game by a 
-        score of ${playerScore} to ${computerScore}`);
+        message = `You won the game by a 
+        score of ${playerScore} to ${computerScore}`;
+        body.style.backgroundColor = "#b4f3ca";
     }
     else if(computerScore > playerScore) {
-        console.log(`You lost the game by a
-         score of ${playerScore} to ${computerScore}`);
+        message = `You lost the game by a
+        score of ${playerScore} to ${computerScore}`;
+        body.style.backgroundColor = "#df6d6d";
     }
     else {
-        console.log(`It's a tie,
+         message = `It's a tie,
          your score is ${playerScore} and 
-         the computer score is ${computerScore}`);
+         the computer score is ${computerScore}`;
     }
+
+    result.textContent = message;
+
+    optionButtons.forEach(btn => btn.style.scale = 1);
+    optionButtons.forEach(btn => btn.disabled = true);
 }
+
+function resetGame() {
+
+    computerScore = 0;
+    playerScore = 0;
+    roundNumber = 0;
+
+    optionButtons.forEach(btn => btn.disabled = false);
+
+    if(computerBtn !== undefined)
+      computerBtn.style.backgroundColor = "#f2f7f3";
+
+    resetBodyColor();
+
+    result.textContent = "";
+}
+
+function resetBodyColor(){
+    body.style.backgroundColor = "#dfdfdf"
+}
+
+const body = document.body;
+const optionButtons = document.querySelectorAll(".option");
+const result = document.querySelector(".result");
+const resetButton = document.querySelector(".resetButton");
+const computerButtons = document.querySelectorAll("#computer")
+
+optionButtons.forEach(btn =>
+     btn.addEventListener("click", event => {
+        playRound(event.target.value);
+     }));
+    
+optionButtons.forEach(btn => 
+    btn.addEventListener("mouseover", event => {
+    event.target.style.scale = 1.2;
+}));
+
+optionButtons.forEach(btn => 
+    btn.addEventListener("mouseleave", event => {
+    event.target.style.scale = 1;
+}));
+
+
+resetButton.addEventListener("click", resetGame);

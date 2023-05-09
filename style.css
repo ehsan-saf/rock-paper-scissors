@@ -1,0 +1,71 @@
+body {
+    background-color: #dfdfdf;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    gap: 50px;
+}
+
+.option {
+    transition: scale 0.2s ease;
+}
+
+.option,
+#computer {
+    background-color: #f2f7f3;
+    border: none;
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.option[value="rock"]::before,
+#computer[value="rock"]::before {
+    content: url(./images/rock.png);
+}
+
+.option[value="paper"]::before,
+#computer[value="paper"]::before {
+    content: url(./images/paper.png);
+}
+
+.option[value="scissors"]::before,
+#computer[value="scissors"]::before {
+    content: url(./images/scissors.png);
+}
+
+.result {
+    text-align: center;
+    font-size: 30px;
+    height: 30px;
+}
+
+.resetButton {
+    background-color: #f7f7f7;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 22px 44px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.resetButton:hover {
+    background-color: #000000;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
